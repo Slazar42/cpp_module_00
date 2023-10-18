@@ -6,7 +6,7 @@
 /*   By: slazar <slazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 11:24:15 by slazar            #+#    #+#             */
-/*   Updated: 2023/10/18 15:35:46 by slazar           ###   ########.fr       */
+/*   Updated: 2023/10/18 20:01:09 by slazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #define PHONEBOOK_HPP
 
 #include "Contact.hpp"
+#include <iomanip>
+#include <string>
+#include <stdlib.h>
 
 class PhoneBook
 {

@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: slazar <slazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 16:54:05 by slazar            #+#    #+#             */
-/*   Updated: 2023/10/18 16:45:22 by slazar           ###   ########.fr       */
+/*   Created: 2023/10/18 19:41:17 by slazar            #+#    #+#             */
+/*   Updated: 2023/10/18 20:17:57 by slazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
-#include <iomanip>
 
 PhoneBook::PhoneBook()
 {
@@ -30,11 +29,12 @@ void PhoneBook::Prompte()
 
     std::cout<<"Enter one of the following commands ADD or SEARCH or EXIT.\n";
     std::getline(std::cin, command);
+	
     if(command == "ADD")
         ADD();
     else if(command == "SEARCH")
         SEARCH();
-    else if(command == "EXIT")
+    else if(command == "EXIT" || std::cin.eof())
         EXIT();
     else
         Prompte();
@@ -52,6 +52,8 @@ void PhoneBook::ADD()
     {
         std::cout<<"Enter the first name :\n";
         std::getline(std::cin, str);
+		if(std::cin.eof())
+			EXIT();
         Contacts[capacity%8].set_fn(str);
     }
 
@@ -60,6 +62,8 @@ void PhoneBook::ADD()
     {
         std::cout<<"Enter the last name :\n";
         std::getline(std::cin, str);
+		if(std::cin.eof())
+			EXIT();
         Contacts[capacity%8].set_ln(str);
     }
 
@@ -68,6 +72,8 @@ void PhoneBook::ADD()
     {
         std::cout<<"Enter the nick name:\n";
         std::getline(std::cin, str);
+		if(std::cin.eof())
+			EXIT();
         Contacts[capacity%8].set_nn(str);
     }
 
@@ -76,6 +82,8 @@ void PhoneBook::ADD()
     {
         std::cout<<"Enter the phone number :\n";
         std::getline(std::cin, str);
+		if(std::cin.eof())
+			EXIT();
         Contacts[capacity%8].set_ph(str);
     }
 
@@ -95,17 +103,13 @@ std::string PhoneBook::Get_10_char(std::string str)
 {
     if(str.length() <= 10)
         return str;
-    else
-    {
-        std::string s = str.substr(0,9);
-        s[9] = '.';
-        return s;
-    }
+    std::string s = str.substr(0,9) + ".";
+    return s;
 }
 
 void PhoneBook::SEARCH()
 {
-    std::string index;
+    std::string index ;
 
 	std::cout << " ___________________________________________ \n";
 	std::cout << "|     Index|First Name| Last Name|  Nickname|\n";
@@ -115,20 +119,29 @@ void PhoneBook::SEARCH()
         std::cout << "|" << std::setw(10) << i+1 << "|"
         << std::setw(10) << Get_10_char(Contacts[i].get_fn()) << "|"
         << std::setw(10) << Get_10_char(Contacts[i].get_ln()) << "|"
-        << std::setw(10) << Get_10_char(Contacts[i].get_ln()) << "|\n";
+        << std::setw(10) << Get_10_char(Contacts[i].get_nn()) << "|\n";
     }
 	std::cout << " ___________________________________________ \n";
     
-    while (1)
+    while (capacity)
     {
-        
         std::cout << "Enter the index :\n";
         std::getline(std::cin, index);
-        if ((index[0] >= '1' && index[0] <= '9' 
-            && index.length() == 1))
-                break;
-        else if(index == "EXIT")
-            EXIT();
+		if (std::cin.eof())
+			EXIT();
+        if (capacity &&(index.length() != 1 || index[0] < '1' || (unsigned int) index[0] > capacity+48))
+            std::cout << "Invalid index !! try between 1 && " << capacity << std::endl;
+        else if ((index[0] >= '1' && index[0] <= '9' && index.length() == 1)
+                && (unsigned int) index[0] - 48 <= capacity)
+                    break;
+    }
+    if(capacity)
+    {
+        std::cout<< "First Name : "<<Contacts[index[0] - '1'].get_fn()<<std::endl;
+        std::cout<< "Last Name : "<<Contacts[index[0] - '1'].get_ln()<<std::endl;
+        std::cout<< "Nick Name : "<<Contacts[index[0] - '1'].get_nn()<<std::endl;
+        std::cout<< "Phone Number : "<<Contacts[index[0] - '1'].get_ph()<<std::endl;
+        std::cout<< "Darkest Secret : "<<Contacts[index[0] - '1'].get_ds()<<std::endl;
     }
     Prompte();
 }
