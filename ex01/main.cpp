@@ -6,15 +6,15 @@
 /*   By: slazar <slazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 10:20:46 by slazar            #+#    #+#             */
-/*   Updated: 2023/10/17 16:12:25 by slazar           ###   ########.fr       */
+/*   Updated: 2023/10/18 11:16:10 by slazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Contact.hpp"
+#include "PhoneBook.hpp"
 
 int main()
 {
-    Contact o1;
-    o1.set_fn("anass");
-    std::cout<<o1.get_fn()<<std::endl;
+    PhoneBook phonebook;
+    phonebook.Prompte();
+    
 }

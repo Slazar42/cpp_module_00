@@ -6,7 +6,7 @@
 /*   By: slazar <slazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 10:00:59 by slazar            #+#    #+#             */
-/*   Updated: 2023/10/17 16:01:20 by slazar           ###   ########.fr       */
+/*   Updated: 2023/10/18 15:35:01 by slazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ void Contact::set_fn(std::string f)
 void Contact::set_ln(std::string l)
 {
     l_name = l;
+}
+void Contact::set_ph(std::string p)
+{
+    ph = p;
 }
 void Contact::set_nn(std::string n)
 {
@@ -35,6 +39,10 @@ std::string Contact::get_fn()
 std::string Contact::get_ln()
 {
     return l_name;
+}
+std::string Contact::get_ph()
+{
+    return ph;
 }
 std::string Contact::get_nn()
 {

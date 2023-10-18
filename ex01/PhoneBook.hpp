@@ -6,7 +6,7 @@
 /*   By: slazar <slazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 11:24:15 by slazar            #+#    #+#             */
-/*   Updated: 2023/10/17 18:10:19 by slazar           ###   ########.fr       */
+/*   Updated: 2023/10/18 15:35:46 by slazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,19 @@
 #define PHONEBOOK_HPP
 
 #include "Contact.hpp"
-#include<iostream>
-#include<string>
 
 class PhoneBook
 {
-    private :
-        Contact Contacts[8];
-        long capacity = 0;
+    Contact Contacts[8];
+    unsigned int capacity;
     public :
         PhoneBook();
         ~PhoneBook();
         void Prompte();
+        std::string Get_10_char(std::string str);
         void ADD();
-        void SEARCH(int i);
+        void SEARCH();
         void EXIT();
 };
-
-
-
-
-
 
 #endif
