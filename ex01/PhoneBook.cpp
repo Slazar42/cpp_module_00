@@ -6,7 +6,7 @@
 /*   By: slazar <slazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:41:17 by slazar            #+#    #+#             */
-/*   Updated: 2023/10/18 20:17:57 by slazar           ###   ########.fr       */
+/*   Updated: 2023/10/18 20:30:16 by slazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,6 @@ void PhoneBook::SEARCH()
 
 void PhoneBook::EXIT()
 {
+	std::cout<<"See you soon, Good bye !!\n";
     exit(0);
 }
