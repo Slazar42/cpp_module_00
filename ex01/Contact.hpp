@@ -6,7 +6,7 @@
 /*   By: slazar <slazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 11:35:15 by slazar            #+#    #+#             */
-/*   Updated: 2023/10/18 13:15:55 by slazar           ###   ########.fr       */
+/*   Updated: 2023/10/19 13:23:46 by slazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 #include<string>
 #include<iostream>
-
 
 class Contact
 {

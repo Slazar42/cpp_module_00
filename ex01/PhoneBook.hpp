@@ -6,7 +6,7 @@
 /*   By: slazar <slazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 11:24:15 by slazar            #+#    #+#             */
-/*   Updated: 2023/10/18 20:01:09 by slazar           ###   ########.fr       */
+/*   Updated: 2024/01/12 17:06:54 by slazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ class PhoneBook
     unsigned int capacity;
     public :
         PhoneBook();
-        ~PhoneBook();
         void Prompte();
         std::string Get_10_char(std::string str);
         void ADD();

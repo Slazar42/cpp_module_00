@@ -6,7 +6,7 @@
 /*   By: slazar <slazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:41:17 by slazar            #+#    #+#             */
-/*   Updated: 2023/10/18 20:30:16 by slazar           ###   ########.fr       */
+/*   Updated: 2024/01/12 18:31:07 by slazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,15 @@
 
 PhoneBook::PhoneBook()
 {
-    std::cout<<"welcome to PhoneBook Software\n";
+    std::cout<<"\033[32mWelcome to PhoneBook Software !!\033[0m\n";
     capacity = 0;
-}
-
-PhoneBook::~PhoneBook()
-{
-    std::cout<<"See you soon, Good bye !!\n";
 }
 
 void PhoneBook::Prompte()
 {
     std::string command;
 
-    std::cout<<"Enter one of the following commands ADD or SEARCH or EXIT.\n";
+    std::cout<<"Enter one of the following commands \033[33mADD\033[0m or \033[33mSEARCH\033[0m or \033[33mEXIT\033[0m.\n";
     std::getline(std::cin, command);
 	
     if(command == "ADD")
@@ -45,9 +40,8 @@ void PhoneBook::ADD()
     std::string str;
 
     if (capacity > 7)
-        std::cout<<"Warning !! Your contact "<<Contacts[capacity%8].get_fn()
-            <<"will be lost for ever !!\n";
-
+        std::cout<<"\033[31mWarning\033[0m !! Your contact \033[31m"<<Contacts[capacity%8].get_fn()
+            <<" \033[0mwill be lost for ever !!\n";
     while (str == "" )
     {
         std::cout<<"Enter the first name :\n";
@@ -56,7 +50,6 @@ void PhoneBook::ADD()
 			EXIT();
         Contacts[capacity%8].set_fn(str);
     }
-
     str = "";
     while (str == "" )
     {
@@ -70,7 +63,7 @@ void PhoneBook::ADD()
     str = "";
     while (str == "" )
     {
-        std::cout<<"Enter the nick name:\n";
+        std::cout<<"Enter the nick name :\n";
         std::getline(std::cin, str);
 		if(std::cin.eof())
 			EXIT();
@@ -95,10 +88,11 @@ void PhoneBook::ADD()
         Contacts[capacity%8].set_ds(str);
     }
 
-    std::cout<<"Contact added successfully !!\n";
+    std::cout<<"\033[32mContact added successfully !!\033[0m\n";
     capacity += 1;
     Prompte();
 }
+
 std::string PhoneBook::Get_10_char(std::string str)
 {
     if(str.length() <= 10)
@@ -109,29 +103,34 @@ std::string PhoneBook::Get_10_char(std::string str)
 
 void PhoneBook::SEARCH()
 {
-    std::string index ;
+    std::string index;
+    unsigned int i = 0;
 
 	std::cout << " ___________________________________________ \n";
-	std::cout << "|     Index|First Name| Last Name|  Nickname|\n";
+	std::cout << "|     \033[35mIndex\033[0m|First Name| Last Name|  Nickname|\n";
 	std::cout << "|----------|----------|----------|----------|\n";
-    for(unsigned int i = 0 ;i <capacity && i < 8;i++)
+    for(;i <capacity && i < 8;i++)
     {
-        std::cout << "|" << std::setw(10) << i+1 << "|"
-        << std::setw(10) << Get_10_char(Contacts[i].get_fn()) << "|"
-        << std::setw(10) << Get_10_char(Contacts[i].get_ln()) << "|"
-        << std::setw(10) << Get_10_char(Contacts[i].get_nn()) << "|\n";
+        std::cout << "|\033[35m" << std::setw(10) << i+1 << "\033[0m|";
+        std::cout << std::setw(10) << Get_10_char(Contacts[i].get_fn()) << "|";
+        std::cout << std::setw(10) << Get_10_char(Contacts[i].get_ln()) << "|";
+        std::cout << std::setw(10) << Get_10_char(Contacts[i].get_nn()) << "|\n";
     }
 	std::cout << " ___________________________________________ \n";
-    
+
     while (capacity)
     {
-        std::cout << "Enter the index :\n";
+        std::cout << "Enter the \033[35mindex\033[0m :\n";
         std::getline(std::cin, index);
 		if (std::cin.eof())
 			EXIT();
-        if (capacity &&(index.length() != 1 || index[0] < '1' || (unsigned int) index[0] > capacity+48))
-            std::cout << "Invalid index !! try between 1 && " << capacity << std::endl;
-        else if ((index[0] >= '1' && index[0] <= '9' && index.length() == 1)
+        if (capacity < 8)
+            i = capacity;
+        else
+            i = 8;
+        if (capacity && (index.length() != 1 || index[0] < '1' || index[0] > '8' || (unsigned int) index[0] > capacity+48))
+            std::cout << "\033[31mInvalid index !!\033[0m try between \033[35m1 & " << i << "\033[0m\n";
+        else if ((index[0] >= '1' && index[0] <= '8' && index.length() == 1)
                 && (unsigned int) index[0] - 48 <= capacity)
                     break;
     }
@@ -148,6 +147,6 @@ void PhoneBook::SEARCH()
 
 void PhoneBook::EXIT()
 {
-	std::cout<<"See you soon, Good bye !!\n";
+	std::cout<<"\033[32mSee you soon, Good bye !!\n";
     exit(0);
 }
